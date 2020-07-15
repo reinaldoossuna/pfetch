@@ -942,6 +942,13 @@ get_lastupgrade() {
     log "Last upgrade" "${lastupgrade:-0m}" >&6
 }
 
+get_freespace() {
+    for disk in $PF_DISKS; do
+        IFS=" " read -r p a <<< $(df -h --output=pcent,avail $disk | tail -n1)
+        f=$(( 100 - ${p//%} ))
+        log "$disk" "${a} ${f//%}% Free" >&6
+    done
+}
 get_ascii() {
     # This is a simple function to read the contents of
     # an ascii file from 'stdin'. It allows for the use
