@@ -1618,7 +1618,7 @@ main() {
         done
 
         # Add an additional space of length to act as a gap.
-        info_length=$((info_length + 1))
+        info_length=$((info_length + 5))
 
         # Iterate over the above list and run any existing "get_" functions.
         for info; do "get_$info"; done
