@@ -919,6 +919,29 @@ get_palette() {
         " " " >&6
 }
 
+get_lastupgrade() {
+    diff=`tac /var/log/pacman.log | while IFS= read line; do
+        if [[ $line =~ "pacman -S -y" ]]; then
+            IFS=' ' read -r d _ <<< $line
+            lastupgSec=$(date -d d +%s)
+            nowSec=$(date +%s)
+            diff=$(( nowSec - lastupgSec ))
+            echo $diff
+            break
+        fi
+    done`
+
+    d=$(( diff / 60 / 60 / 24 ))
+    h=$(( diff / 60 / 60 % 24 ))
+    m=$(( diff / 60 % 60 ))
+
+    [ "$d" = 0 ] || lastupgrade="${lastupgrade}${d}d "
+    [ "$h" = 0 ] || lastupgrade="${lastupgrade}${h}h "
+    [ "$m" = 0 ] || lastupgrade="${lastupgrade}${m}m "
+
+    log "Last upgrade" "${lastupgrade:-0m}" >&6
+}
+
 get_ascii() {
     # This is a simple function to read the contents of
     # an ascii file from 'stdin'. It allows for the use
