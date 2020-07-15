@@ -1,0 +1,11 @@
+function pfetchtimer() {
+  now=$(date +%s)
+  e=300
+  read last <<< $(cat ~/.last_pf)
+  d=$(( now - last ))
+  if [[  $d -ge $e ]]; then
+    pfetch
+    echo $now > ~/.last_pf
+  fi
+}
+pfetchtimer
