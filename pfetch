@@ -949,6 +949,11 @@ get_freespace() {
         log "$disk" "${a} ${f//%}% Free" >&6
     done
 }
+
+get_blank() {
+    printf '\n' >&6
+}
+
 get_time() {
     log Date $(date +"%d/%m/%+4Y") >&6
     log Time $( date +"%R" ) >&6
