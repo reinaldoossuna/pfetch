@@ -949,6 +949,10 @@ get_freespace() {
         log "$disk" "${a} ${f//%}% Free" >&6
     done
 }
+get_time() {
+    log Date $(date +"%d/%m/%+4Y") >&6
+    log Time $( date +"%R" ) >&6
+}
 get_ascii() {
     # This is a simple function to read the contents of
     # an ascii file from 'stdin'. It allows for the use
