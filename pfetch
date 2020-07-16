@@ -454,6 +454,16 @@ get_uptime() {
     log uptime "${uptime:-0m}" >&6
 }
 
+get_upgpkgs() {
+    upgpackages=`cat ~/.upgradablepkgs | wc -l`
+    log "Upgradable pkgs" "$upgpackages" >&6
+}
+
+get_orphanspkgs() {
+    orppackages=`cat ~/.orphanspkgs | wc -l`
+    log "Orphans pkgs" "$orppackages" >&6
+}
+
 get_pkgs() {
     # This is just a simple wrapper around 'command -v' to avoid
     # spamming '>/dev/null' throughout this function.
