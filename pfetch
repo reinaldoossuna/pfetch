@@ -933,7 +933,9 @@ get_lastupgrade() {
     diff=`tac /var/log/pacman.log | while IFS= read line; do
         if [[ $line =~ "pacman -S -y" ]]; then
             IFS=' ' read -r d _ <<< $line
-            lastupgSec=$(date -d d +%s)
+            d=${d#[}
+            d=${d%]}
+            lastupgSec=$(date -d $d +%s)
             nowSec=$(date +%s)
             diff=$(( nowSec - lastupgSec ))
             echo $diff
