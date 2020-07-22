@@ -125,7 +125,7 @@ get_os() {
     # On first run, this function displays _nothing_, only on the second
     # invocation is 'log()' called.
     [ "$distro" ] && {
-        log os "$distro" >&6
+        log OS "$distro" >&6
         return
     }
 
@@ -306,7 +306,7 @@ get_kernel() {
     esac
 
     # '$kernel' is the cached output of 'uname -r'.
-    log kernel "$kernel" >&6
+    log Kernel "$kernel" >&6
 }
 
 get_host() {
@@ -778,7 +778,7 @@ get_memory() {
         ;;
     esac
 
-    log memory "${mem_used:-?}M / ${mem_full:-?}M" >&6
+    log Memory "${mem_used:-?}M / ${mem_full:-?}M" >&6
 }
 
 get_wm() {
@@ -1622,7 +1622,7 @@ main() {
         # Disable globbing and set the positional parameters to the
         # contents of 'PF_INFO'.
         set -f
-        set +f -- ${PF_INFO-ascii title os host kernel uptime pkgs memory}
+        set +f -- ${PF_INFO-title time blank os host kernel pkgs lastupgrade blank memory freespace}
 
         # Iterate over the info functions to determine the lengths of the
         # "info names" for output alignment. The option names and subtitles
