@@ -77,7 +77,9 @@ log() {
 
     # Move the cursor to the right, the width of the ascii art with an
     # additional gap for text spacing.
-    printf '[%sC' "${ascii_width--1}"
+    cols=$(tput cols)
+    printf '%*s' "$(( ( cols - 3 * info_length ) / 2  ))"
+    printf '[%s' "${ascii_width--1}"
 
     # Print the info name and color the text.
     printf '[3%s;1m%s[m' "${PF_COL1-4}" "$name"
