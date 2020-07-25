@@ -1,3 +1,4 @@
+<p align="center"><img src="https://user-images.githubusercontent.com/30635486/88463805-8f64b180-ce83-11ea-854c-643664245832.png" width="60%">
 <p align="center"><img src="https://user-images.githubusercontent.com/6799467/65944518-68834d80-e421-11e9-9b14-6ca26a16108a.png" width="350px"></p>
 <h1 align="center">pfetch</h1>
 <p align="center">A pretty system information tool written in POSIX sh</p><br>
@@ -25,6 +26,8 @@ picture"!
 
 ## OS support
 
+**SOME OF MY MODIFICATION JUST WORK IN ARCH LINUX**
+
 - **Linux**
     - Alpine Linux, Arch Linux, Arco Linux, Artix Linux, CentOS, Debian, Elementary, Fedora, Gentoo, Guix, Hyperbola, KISS Linux, Linux Lite, Linux Mint, Mageia, Manjaro, MX Linux, NixOS, OpenSUSE, Parabola, Pop!\_OS, PureOS, Slackware, Ubuntu and Void Linux.
     - All other distributions are supported with a generic penguin logo.
@@ -48,6 +51,15 @@ picture"!
 # NOTE: If 'ascii' will be used, it must come first.
 # Default: first example below
 # Valid: space separated string
+
+# OPTION add in this repo:
+# blank: Print just a blank line
+# time: Print the date and time
+# lastupgrade: Print when the last pacman -S -u was executed
+# upgpkgs: Print how many packages are upgradable
+# orphanspkgs: Print how many orphans packages exists, if 0 dont print
+# freespace: Print how much freespace are in the in the disks in the variable PF_DISKS
+
 #
 # OFF by default: shell editor wm de palette
 PF_INFO="ascii title os host kernel uptime pkgs memory"
@@ -57,6 +69,9 @@ PF_INFO="ascii"
 
 # Example: Only Information.
 PF_INFO="title os host kernel uptime pkgs memory"
+
+# Example: Using my infos
+export PF_INFO="blank title time blank os kernel lastupgrade upgpkgs orphanspkgs blank memory freespace"
 
 # A file to source before running pfetch.
 # Default: unset
@@ -112,6 +127,9 @@ SHELL=""
 
 # Which desktop environment to display.
 XDG_CURRENT_DESKTOP=""
+
+# Which disk's free space to display
+PF_DISK=""
 ```
 
 ## Credit
