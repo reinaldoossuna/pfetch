@@ -454,16 +454,19 @@ get_uptime() {
     [ "$m" = 0 ] || uptime="${uptime}${m}m "
 
     log uptime "${uptime:-0m}" >&6
+
 }
 
 get_upgpkgs() {
-    upgpackages=`cat ~/.upgradablepkgs | wc -l`
+    upgpackages=`cat ~/.cache/yay/upgradablepkgs | wc -l`
     log "Upgradable pkgs" "$upgpackages" >&6
 }
 
 get_orphanspkgs() {
-    orppackages=`cat ~/.orphanspkgs | wc -l`
-    log "Orphans pkgs" "$orppackages" >&6
+    orppackages=`yay -Qqtd | wc -l`
+    if [[ orppackages -ge 1 ]]; then
+      log "Orphans pkgs" "$orppackages" >&6
+    fi
 }
 
 get_pkgs() {
